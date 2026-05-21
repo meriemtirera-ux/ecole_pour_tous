@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>École Pour Tous</title>
+
+<style>
+  :root {
+    --bleu-marine: #1B3A8C;
+    --bleu-ciel: #4A90D9;
+    --turquoise: #3BBFAD;
+    --or-soleil: #F5A623;
+    --turquoise-clair: #6BC5B8;
+    --bg: #F7F5F0;
+    --text: #1a2340;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid rgba(27,58,140,0.08);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+  }
+
+  .nav-logo {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--bleu-marine);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--turquoise); }
+  .nav-logo em { color: var(--or-soleil); font-style: normal; }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--bleu-marine);
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--turquoise); }
+
+  .nav-cta {
+    background: var(--bleu-marine);
+    color: white !important;
+    opacity: 1 !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--bleu-ciel) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, #eef6ff 0%, #f0faf8 50%, #fffbf0 100%);
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: float 8s ease-in-out infinite;
+  }
+  .blob1 { width: 500px; height: 500px; background: var(--bleu-ciel); top: -100px; right: -100px; animation-delay: 0s; }
+  .blob2 { width: 350px; height: 350px; background: var(--turquoise); bottom: 50px; right: 200px; animation-delay: 3s; }
+  .blob3 { width: 250px; height: 250px; background: var(--or-soleil); bottom: -50px; left: 10%; animation-delay: 1.5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 620px;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: white;
+    border: 2px solid var(--turquoise);
+    color: var(--turquoise);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--bleu-marine);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 .accent { color: var(--turquoise); font-style: italic; }
+  .hero h1 .gold { color: var(--or-soleil); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4a5580;
+    margin-bottom: 2rem;
+    max-width: 500px;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+  .btn-primary {
+    background: var(--bleu-marine);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 6px 20px rgba(27,58,140,0.25);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(27,58,140,0.35); background: #162e73; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--bleu-marine);
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2.5px solid var(--bleu-marine);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--bleu-marine); color: white; }
+
+  .hero-stats {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .stat {
+    display: flex; flex-direction: column;
+  }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--bleu-marine);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--or-soleil); }
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #7a85a8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-visual {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    z-index: 1;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero-card-float {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(27,58,140,0.12);
+    width: 300px;
+    position: relative;
+  }
+
+  .hero-card-float::before {
+    content: '✦';
+    position: absolute; top: -15px; right: -15px;
+    font-size: 2rem;
+    color: var(--or-soleil);
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .free-badge {
+    background: linear-gradient(135deg, var(--turquoise), var(--bleu-ciel));
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .hero-card-float h3 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--bleu-marine);
+    margin-bottom: 0.5rem;
+  }
+  .hero-card-float p { font-size: 0.9rem; color: #6a759a; line-height: 1.5; margin-bottom: 1rem; }
+
+  .card-check {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; font-weight: 700; color: var(--bleu-marine);
+    margin-bottom: 0.4rem;
+  }
+  .card-check::before {
+    content: '✓';
+    width: 20px; height: 20px;
+    background: var(--turquoise);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 80px 5%; }
+
+  .section-label {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--bleu-marine);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-title .accent { color: var(--turquoise); font-style: italic; }
+  .section-title .gold { color: var(--or-soleil); }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: #5a6380;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    background: white;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .how-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    background: var(--bg);
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .how-card:hover {
+    border-color: var(--turquoise);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(59,191,173,0.15);
+  }
+
+  .how-icon {
+    width: 64px; height: 64px;
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.2rem;
+  }
+
+  .how-card h3 {
+    font-weight: 900;
+    font-size: 1.05rem;
+    color: var(--bleu-marine);
+    margin-bottom: 0.5rem;
+  }
+  .how-card p { font-size: 0.9rem; color: #6a759a; line-height: 1.6; }
+
+  .step-num {
+    position: absolute; top: 12px; right: 16px;
+    font-size: 3rem; font-weight: 900;
+    color: rgba(27,58,140,0.05);
+    line-height: 1;
+  }
+
+  /* AGES */
+  .ages-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .age-card {
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  .age-card.students { background: linear-gradient(135deg, var(--bleu-ciel), var(--bleu-marine)); }
+  .age-card.teachers { background: linear-gradient(135deg, var(--turquoise), #2a9a8a); }
+
+  .age-tag {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .age-card h3 { font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 0.3rem; }
+  .age-card p { opacity: 0.85; font-size: 0.95rem; }
+
+  .age-deco {
+    position: absolute; right: -20px; bottom: -20px;
+    font-size: 8rem;
+    opacity: 0.08;
+    line-height: 1;
+  }
+
+  /* PACKS */
+  .packs { background: var(--bleu-marine); position: relative; overflow: hidden; }
+
+  .packs::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: rgba(59,191,173,0.08);
+    top: -200px; right: -200px;
+  }
+
+  .packs .section-title { color: white; }
+  .packs .section-label { color: var(--turquoise); }
+  .packs .section-sub { color: rgba(255,255,255,0.6); }
+
+  .packs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative; z-index: 1;
+  }
+
+  .pack-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    padding: 2.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pack-card.featured {
+    background: white;
+    border-color: transparent;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    transform: scale(1.03);
+  }
+
+  .pack-card:hover:not(.featured) {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-5px);
+  }
+
+  .pack-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .pack-card:not(.featured) .pack-badge { background: rgba(59,191,173,0.2); color: var(--turquoise); }
+  .pack-card.featured .pack-badge { background: var(--or-soleil); color: white; }
+
+  .pack-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+  }
+  .pack-card:not(.featured) .pack-name { color: white; }
+  .pack-card.featured .pack-name { color: var(--bleu-marine); }
+
+  .pack-desc {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  .pack-card:not(.featured) .pack-desc { color: rgba(255,255,255,0.6); }
+  .pack-card.featured .pack-desc { color: #6a759a; }
+
+  .pack-price {
+    margin-bottom: 1.5rem;
+    display: flex; align-items: flex-end; gap: 0.3rem;
+  }
+
+  .price-num {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .pack-card:not(.featured) .price-num { color: white; }
+  .pack-card.featured .price-num { color: var(--bleu-marine); }
+
+  .price-suffix { font-size: 1rem; font-weight: 700; opacity: 0.6; margin-bottom: 0.3rem; }
+  .pack-card:not(.featured) .price-suffix { color: white; }
+  .pack-card.featured .price-suffix { color: var(--bleu-marine); }
+
+  .pack-features { list-style: none; margin-bottom: 2rem; }
+  .pack-features li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .pack-card.featured .pack-features li { border-color: rgba(27,58,140,0.07); }
+
+  .pack-features li:last-child { border: none; }
+
+  .pack-card:not(.featured) .pack-features li { color: rgba(255,255,255,0.8); }
+  .pack-card.featured .pack-features li { color: #4a5580; }
+
+  .feat-icon {
+    width: 20px; height: 20px; flex-shrink: 0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    margin-top: 1px;
+  }
+  .pack-card:not(.featured) .feat-icon { background: rgba(59,191,173,0.25); color: var(--turquoise); }
+  .pack-card.featured .feat-icon { background: var(--turquoise); color: white; }
+
+  .pack-cta {
+    display: block;
+    text-align: center;
+    padding: 0.9rem;
+    border-radius: 50px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    font-size: 0.95rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  }
+  .pack-card:not(.featured) .pack-cta {
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    background: transparent;
+  }
+  .pack-card:not(.featured) .pack-cta:hover { background: rgba(255,255,255,0.1); }
+  .pack-card.featured .pack-cta { background: var(--bleu-marine); color: white; box-shadow: 0 8px 25px rgba(27,58,140,0.3); }
+  .pack-card.featured .pack-cta:hover { background: #162e73; }
+
+  /* OPTIONS */
+  .options { background: white; }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .option-card {
+    border-radius: 20px;
+    padding: 1.8rem;
+    border: 2.5px solid transparent;
+    background: var(--bg);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .option-card:hover {
+    border-color: var(--bleu-ciel);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(74,144,217,0.15);
+  }
+
+  .option-emoji { font-size: 2.2rem; margin-bottom: 0.8rem; }
+  .option-card h3 { font-size: 1rem; font-weight: 900; color: var(--bleu-marine); margin-bottom: 0.3rem; }
+  .option-card p { font-size: 0.85rem; color: #7a85a8; line-height: 1.5; margin-bottom: 1rem; }
+  .option-price {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--bleu-marine);
+  }
+  .option-price span { color: var(--or-soleil); }
+
+  /* FREE SESSION */
+  .free-section {
+    background: linear-gradient(135deg, var(--turquoise) 0%, var(--bleu-ciel) 100%);
+    text-align: center;
+    padding: 80px 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .free-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .free-section h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .free-section p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--bleu-marine);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1.05rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.2); }
+
+  /* TEAM */
+  .team { background: var(--bg); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(27,58,140,0.07);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(27,58,140,0.15); }
+
+  .team-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .team-card:nth-child(1)::before { background: linear-gradient(90deg, var(--bleu-marine), var(--bleu-ciel)); }
+  .team-card:nth-child(2)::before { background: linear-gradient(90deg, var(--turquoise), var(--turquoise-clair)); }
+  .team-card:nth-child(3)::before { background: linear-gradient(90deg, var(--or-soleil), #f7c05e); }
+  .team-card:nth-child(4)::before { background: linear-gradient(90deg, #e05c9b, #f7a1c8); }
+
+  .team-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    margin: 0 auto 1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .team-card:nth-child(1) .team-avatar { background: linear-gradient(135deg, var(--bleu-marine), var(--bleu-ciel)); }
+  .team-card:nth-child(2) .team-avatar { background: linear-gradient(135deg, var(--turquoise), var(--turquoise-clair)); }
+  .team-card:nth-child(3) .team-avatar { background: linear-gradient(135deg, var(--or-soleil), #f7c05e); }
+  .team-card:nth-child(4) .team-avatar { background: linear-gradient(135deg, #e05c9b, #f7a1c8); }
+
+  .team-card h3 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--bleu-marine);
+    margin-bottom: 0.2rem;
+  }
+  .team-card .role {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--turquoise);
+    margin-bottom: 0.8rem;
+  }
+  .team-card p { font-size: 0.9rem; color: #7a85a8; line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bleu-marine);
+    color: white;
+    padding: 50px 5% 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand h3 span { color: var(--turquoise); }
+  .footer-brand h3 em { color: var(--or-soleil); font-style: normal; }
+
+  .footer-brand p {
+    opacity: 0.6;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    max-width: 300px;
+  }
+
+  .footer-slogan {
+    font-style: italic;
+    color: var(--turquoise-clair);
+    font-size: 0.9rem;
+  }
+
+  .footer-col h4 {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.3rem 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--turquoise); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.82rem;
+    opacity: 0.45;
+  }
+
+  /* HEARTS DECO */
+  .heart-deco {
+    color: var(--turquoise);
+    margin: 0 0.3rem;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .hero-visual { display: none; }
+    .ages-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .pack-card.featured { transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">École <span>pour</span> <em>tous</em></div>
+  <ul class="nav-links">
+    <li><a href="#comment">Comment ça marche</a></li>
+    <li><a href="#packs">Nos packs</a></li>
+    <li><a href="#options">Options</a></li>
+    <li><a href="#equipe">L'équipe</a></li>
+    <li><a href="#rdv" class="nav-cta">Bilan gratuit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">💙 Lyon · Association loi 1901</div>
+
+    <h1>
+      L'école,<br>
+      même à <span class="accent">l'hôpital.</span><br>
+      <span class="gold">Pour tous.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Accompagnement scolaire personnalisé pour les jeunes hospitalisés à Lyon. 
+      Parce que guérir, c'est aussi continuer d'apprendre.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#rdv" class="btn-primary">Bilan pédagogique gratuit</a>
+      <a href="#packs" class="btn-secondary">Découvrir les packs</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">6<span>–</span>20</div>
+        <div class="stat-label">Ans accompagnés</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2<span>×</span></div>
+        <div class="stat-label">Cours/semaine</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0<span>€</span></div>
+        <div class="stat-label">1er bilan</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-float">
+      <div class="free-badge">✦ Premier RDV offert</div>
+      <h3>Bilan pédagogique</h3>
+      <p>Un rendez-vous avec l'élève et ses parents pour analyser les besoins et définir le meilleur suivi.</p>
+      <div class="card-check">Analyse complète des besoins</div>
+      <div class="card-check">Rencontre parents & élève</div>
+      <div class="card-check">Plan personnalisé offert</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="how" id="comment">
+  <div class="reveal">
+    <div class="section-label">Notre méthode</div>
+    <h2 class="section-title">Un suivi <span class="accent">bienveillant</span><br>et structuré</h2>
+    <p class="section-sub">Chaque jeune hospitalisé mérite un accompagnement adapté à sa situation et à son rythme.</p>
+  </div>
+
+  <div class="how-grid">
+    <div class="how-card reveal">
+      <div class="step-num">01</div>
+      <div class="how-icon" style="background:#eef4ff;">📋</div>
+      <h3>Bilan pédagogique</h3>
+      <p>Un premier RDV gratuit pour évaluer les besoins, rencontrer l'élève et les parents.</p>
+    </div>
+    <div class="how-card reveal" style="transition-delay:0.1s">
+      <div class="step-num">02</div>
+      <div class="how-icon" style="background:#f0faf8;">📚</div>
+      <h3>Suivi bihebdomadaire</h3>
+      <p>2 cours collectifs par semaine pour maintenir le lien scolaire et la motivation.</p>
+    </div>
+    <div class="how-card reveal" style="transition-delay:0.2s">
+      <div class="step-num">03</div>
+      <div class="how-icon" style="background:#fffbf0;">🎯</div>
+      <h3>Cours individuels</h3>
+      <p>Des sessions de 1h30 à la demande des parents pour approfondir ou rattraper.</p>
+    </div>
+    <div class="how-card reveal" style="transition-delay:0.3s">
+      <div class="step-num">04</div>
+      <div class="how-icon" style="background:#fff5ea;">🤝</div>
+      <h3>Coordination totale</h3>
+      <p>Lien continu entre profs, parents et l'établissement scolaire d'origine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AGES -->
+<section style="padding: 60px 5%; background: var(--bg);">
+  <div class="reveal">
+    <div class="section-label">Pour qui ?</div>
+    <h2 class="section-title">Adapté à <span class="accent">chaque âge</span></h2>
+  </div>
+
+  <div class="ages-row reveal">
+    <div class="age-card students">
+      <div class="age-tag">🎒 Étudiants bénévoles</div>
+      <h3>6 – 15 ans</h3>
+      <p>Encadrés par des étudiants motivés et formés, pour un lien de proximité naturel</p>
+      <div class="age-deco">📖</div>
+    </div>
+    <div class="age-card teachers">
+      <div class="age-tag">🎓 Professeurs qualifiés</div>
+      <h3>16 – 20 ans</h3>
+      <p>Accompagnés par des enseignants expérimentés pour les enjeux de diplôme et de spécialité</p>
+      <div class="age-deco">🏆</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKS -->
+<section class="packs" id="packs">
+  <div class="reveal">
+    <div class="section-label">Tarifs & Packs</div>
+    <h2 class="section-title">Choisissez votre <span style="color:var(--turquoise-clair); font-style:italic;">accompagnement</span></h2>
+    <p class="section-sub">Des forfaits annuels transparents, sans surprise. Cours collectifs à 60€/h, pris en charge par un tiers.</p>
+  </div>
+
+  <div class="packs-grid">
+
+    <!-- Pack Essentiel -->
+    <div class="pack-card reveal">
+      <div class="pack-badge">Essentiel</div>
+      <div class="pack-name">Pack Essentiel</div>
+      <div class="pack-desc">Le suivi de base pour maintenir le lien scolaire tout au long de l'hospitalisation.</div>
+      <div class="pack-price">
+        <div class="price-num">350</div>
+        <div class="price-suffix">€/mois</div>
+      </div>
+      <ul class="pack-features">
+        <li><span class="feat-icon">✓</span> Cours particuliers personnalisés</li>
+        <li><span class="feat-icon">✓</span> Suivi pédagogique régulier</li>
+        <li><span class="feat-icon">✓</span> Coordination profs / parents</li>
+        <li><span class="feat-icon">✓</span> Suivi bihebdomadaire inclus</li>
+        <li><span class="feat-icon">✓</span> Bilan pédagogique offert</li>
+      </ul>
+      <button class="pack-cta">Choisir ce pack</button>
+    </div>
+
+    <!-- Pack Examen -->
+    <div class="pack-card featured reveal" style="transition-delay:0.15s">
+      <div class="pack-badge">⭐ Recommandé</div>
+      <div class="pack-name">Pack Examen</div>
+      <div class="pack-desc">L'accompagnement renforcé pour préparer un diplôme sereinement depuis l'hôpital.</div>
+      <div class="pack-price">
+        <div class="price-num">499</div>
+        <div class="price-suffix">€/mois</div>
+      </div>
+      <ul class="pack-features">
+        <li><span class="feat-icon">✓</span> Tout le Pack Essentiel</li>
+        <li><span class="feat-icon">✓</span> Préparation diplôme (brevet, bac…)</li>
+        <li><span class="feat-icon">✓</span> Accompagnement renforcé</li>
+        <li><span class="feat-icon">✓</span> Suivi prioritaire garanti</li>
+        <li><span class="feat-icon">✓</span> Coordination établissement scolaire</li>
+      </ul>
+      <button class="pack-cta">Choisir ce pack</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- OPTIONS -->
+<section class="options" id="options">
+  <div class="reveal">
+    <div class="section-label">En complément</div>
+    <h2 class="section-title">Options <span class="accent">à la carte</span></h2>
+    <p class="section-sub">Ajoutez des modules à votre pack pour un suivi encore plus complet.</p>
+  </div>
+
+  <div class="options-grid">
+    <div class="option-card reveal">
+      <div class="option-emoji">🔬</div>
+      <h3>Cours de spécialité</h3>
+      <p>Maths, physique, SVT, SES… Un prof expert dans la matière de votre enfant.</p>
+      <div class="option-price">+<span>79</span>€/mois</div>
+    </div>
+    <div class="option-card reveal" style="transition-delay:0.1s">
+      <div class="option-emoji">🌍</div>
+      <h3>Cours de langues</h3>
+      <p>Anglais, espagnol, allemand — maintenir le niveau à l'oral comme à l'écrit.</p>
+      <div class="option-price">+<span>49</span>€/mois</div>
+    </div>
+    <div class="option-card reveal" style="transition-delay:0.2s">
+      <div class="option-emoji">💻</div>
+      <h3>Digital Skills</h3>
+      <p>Initiation à l'informatique, bureautique et outils numériques essentiels.</p>
+      <div class="option-price">+<span>39</span>€/mois</div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE SESSION CTA -->
+<section class="free-section" id="rdv">
+  <h2>Un premier rendez-vous offert 🎁</h2>
+  <p>
+    Rencontrez-nous pour un bilan pédagogique complet — analyse des besoins, rencontre avec l'élève et les parents, plan d'accompagnement personnalisé. Entièrement gratuit, sans engagement.
+  </p>
+  <a href="mailto:contact@ecoledpourtous.fr" class="btn-white">Prendre rendez-vous gratuitement →</a>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="equipe">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-label">L'équipe fondatrice</div>
+    <h2 class="section-title">Créé avec <span class="heart-deco">♥</span> par</h2>
+    <p class="section-sub" style="margin: 0 auto;">Quatre passionné·e·s convaincu·e·s que l'éducation ne s'arrête pas aux portes de l'hôpital.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">C</div>
+      <h3>Carla Derouiche</h3>
+      <div class="role">Co-fondatrice · Pédagogie</div>
+      <p>Assure le 1er bilan pédagogique, les suivis personnalisés et la liaison entre parents, professeurs et école.</p>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.1s">
+      <div class="team-avatar">A</div>
+      <h3>Alicia Leveille</h3>
+      <div class="role">Co-fondatrice · Trésorerie</div>
+      <p>S'occupe de la trésorerie et du démarchage budgétaire de l'association.</p>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.2s">
+      <div class="team-avatar">K</div>
+      <h3>Kylian Kimbali</h3>
+      <div class="role">Co-fondateur · Communication</div>
+      <p>Démarche les structures et les potentiels clients. Chargé de la communication de l'association.</p>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.3s">
+      <div class="team-avatar">T</div>
+      <h3>Tom Minier</h3>
+      <div class="role">Co-fondateur · Ressources humaines</div>
+      <p>Gère les ressources humaines, s'occupe des contrats et du suivi des employés.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>École <span>pour</span> <em>tous</em></h3>
+      <p>Accompagnement scolaire personnalisé pour les jeunes hospitalisés à Lyon. Une association au service de l'inclusion éducative.</p>
+      <div class="footer-slogan">« Parce que guérir, c'est aussi continuer d'apprendre. »</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="#comment">Comment ça marche</a>
+      <a href="#packs">Nos packs</a>
+      <a href="#options">Options</a>
+      <a href="#equipe">L'équipe</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:contact@ecoledpourtous.fr">contact@ecoledpourtous.fr</a>
+      <a href="#">Lyon, France</a>
+      <a href="#rdv">Prendre RDV</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 École Pour Tous — Tous droits réservés</span>
+    <span>Carla · Alicia · Kylian · Tom 💙</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
